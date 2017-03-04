@@ -1,2 +1,3 @@
 # hello_world
-repository
+
+print "hello world"
