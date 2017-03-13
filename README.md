@@ -1,3 +1,3 @@
-# hello_world
+# README
 
-print "hello world"
+print "README"
