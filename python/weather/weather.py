@@ -27,10 +27,10 @@ def check_weather():
         print 'input error'
         
     if len(cityname) == 0:
-        print 'input error'
+        print 'Can not find the city.'
         return
 
-    print '\n天气播报：\n'
+    print u'\n天气播报：\n'
             
     for i in range(len(cityname)):
         print cityname[i].decode('utf-8').encode('gb2312'),
@@ -39,12 +39,16 @@ def check_weather():
         print '\t',
 
         if int(temp1[i]) >= int(temp2[i]): ##sometimes temp1<temp2
-            print '%s-%s ℃\t' % (temp2[i], temp1[i]),
+            print u'%s-%s ℃\t' % (temp2[i], temp1[i]),
         else:
-            print '%s-%s ℃\t' % (temp2[i], temp2[i]),
-        print '现在室外温度' + tempNow[i] + '℃\t',
+            print u'%s-%s ℃\t' % (temp1[i], temp2[i]),
+        try:
+            print u'现在室外温度' + tempNow[i] + u'℃\t',
+        except:
+            print
+            continue
         ##print windState[i].decode('utf-8').encode('gb2312')
-        print windState[i]
+        print windState[i].decode('utf-8')
     print
         
 
@@ -53,12 +57,18 @@ if __name__ == '__main__':
     city = raw_input ('which city you want to know(ues PINYIN):\n')
     newCity = city.lower()
 
-    url = ('http://flash.weather.com.cn/wmaps/xml/'+ str(newCity) +'.xml')
-    content = urllib2.urlopen(url).read()
+    while newCity != 'exit' and newCity != 'quit' and newCity != 'close':
+        url = ('http://flash.weather.com.cn/wmaps/xml/'+ str(newCity) +'.xml')
+        try:
+            content = urllib2.urlopen(url).read()
+        except:
+            print 'Input error!'
+            break
 
-    ##f = file('weather.xml', 'w')
-    ##f.write(content)
-    ##f.close()
+        ##print content
 
-    print content
-    check_weather()
+        check_weather()
+        print 
+        city = raw_input ('which city you want to know(ues PINYIN):\n')
+        newCity = city.lower()
+        
