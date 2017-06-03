@@ -1,3 +1,3 @@
 # README
 
-print "README"
+print "WELCOME TO MY WORLD~~"
