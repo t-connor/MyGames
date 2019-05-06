@@ -73,6 +73,3 @@ def web_status():
 if __name__ == '__main__':
     web_status()
 
-
-#add by 201905060959
-#add by hzj 201905061015
